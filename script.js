@@ -3,13 +3,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // 1. Dapatkan Elemen Penting
     const musikLatar = document.getElementById('musik-latar');
     const tombolMusik = document.getElementById('tombol-musik');
-    const galeriContainer = document.getElementById('galeri'); // Container galeri
+    const galeriContainer = document.getElementById('galeri');
     const modal = document.getElementById('modal');
     const modalFoto = document.getElementById('modal-foto');
     const modalPesan = document.getElementById('modal-pesan');
     const tombolTutup = document.getElementsByClassName('tombol-tutup')[0];
     
-    let photoData = []; // Variabel untuk menyimpan data foto dari JSON
+    let photoData = []; 
 
     // ===========================================
     // BAGIAN A: FUNGSI UTAMA (FETCH DATA & RENDER)
@@ -20,29 +20,26 @@ document.addEventListener('DOMContentLoaded', function() {
             // Ambil data dari file data.json secara Asinkron
             const response = await fetch('data.json'); 
             
-            // Cek jika file tidak ditemukan
             if (!response.ok) {
-                throw new Error('Gagal memuat data.json. Cek nama file!');
+                // Memberi tahu pengguna jika file JSON tidak ditemukan
+                throw new Error('Gagal memuat data.json. Cek nama file dan lokasi.');
             }
             
             photoData = await response.json();
             
-            // Bangun galeri setelah data berhasil diambil
             renderGallery(photoData);
 
         } catch (error) {
             console.error('Terjadi kesalahan saat mengambil data:', error);
-            // Tampilkan pesan error yang ramah di galeri
-            galeriContainer.innerHTML = `<p style="color: red;">Kesalahan memuat kado: ${error.message}</p>`;
+            galeriContainer.innerHTML = `<p style="color: red;">Kesalahan memuat kado: ${error.message}. Pastikan data.json ada di root.</p>`;
         }
     }
 
     function renderGallery(data) {
         let htmlContent = '';
         
-        // Loop (perulangan) untuk setiap item di data JSON
         data.forEach((item, index) => {
-            // Kita gunakan variabel CSS --i untuk efek miring (Expert CSS sebelumnya)
+            // Menggunakan variabel CSS --i untuk efek miring
             const rotationVariable = `--i: ${index + 1}`; 
             
             htmlContent += `
@@ -52,37 +49,31 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         });
         
-        // Masukkan HTML yang sudah dibuat ke dalam container galeri
         galeriContainer.innerHTML = htmlContent;
         
-        // Setelah elemen baru dibuat, kita tambahkan Event Listener untuk klik
         setupPhotoClickListeners();
     }
     
     function setupPhotoClickListeners() {
-        // Ambil lagi elemen foto yang baru dibuat
         const newlyCreatedPhotos = document.querySelectorAll('.foto-item');
         
         newlyCreatedPhotos.forEach(item => {
             item.addEventListener('click', function() {
                 const id = parseInt(this.getAttribute('data-id'));
-                // Cari data yang cocok di array photoData
                 const dataItem = photoData.find(d => d.id === id);
                 
                 if (dataItem) {
                     // Isi Modal
                     modalFoto.src = dataItem.url_foto;
                     
-                    // Tambahkan tanggal kenangan di pesan
                     const formattedPesan = `
-                        <p style="font-style: italic; color: #e91e63;">
+                        <p style="font-style: italic; color: #e91e63; font-weight: bold;">
                             Kenangan Tanggal: ${dataItem.tanggal_kenangan}
                         </p>
                         <p>${dataItem.pesan_motivasi}</p>
                     `;
                     modalPesan.innerHTML = formattedPesan;
 
-                    // Tampilkan Modal
                     modal.style.display = 'block';
                 }
             });
@@ -96,11 +87,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // 3. Kontrol Musik Latar
     tombolMusik.addEventListener('click', function() {
         if (musikLatar.paused) {
-            musikLatar.play();
+            // Mencoba memutar musik
+            musikLatar.play().catch(error => {
+                console.log('Autoplay diblokir atau file tidak ditemukan:', error);
+            });
             tombolMusik.textContent = '⏸️ Jeda Musik Semangat';
         } else {
             musikLatar.pause();
-            tombolMusik.textContent = '▶️ Putar Musik Semangat';
+            tombolMusik.textContent = '▶️ Incomplite by SISQO';
         }
     });
 
@@ -119,3 +113,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Panggil fungsi inisialisasi saat website dimuat
     initializeGallery();
 });
+
