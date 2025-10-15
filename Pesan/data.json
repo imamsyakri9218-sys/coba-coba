@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "url_foto": "foto1.jpg",
+    "tanggal_kenangan": "2023-10-25",
+    "pesan_motivasi": "Senyummu di sini adalah alasan aku coding sampai subuh. Jangan pernah padamkan cahaya itu!"
+  },
+  {
+    "id": 2,
+    "url_foto": "foto2.jpg",
+    "tanggal_kenangan": "2024-02-14",
+    "pesan_motivasi": "Saat kamu ragu, ingatlah momen ini. Kamu adalah pribadi yang kuat dan inspiratif."
+  },
+  {
+    "id": 3,
+    "url_foto": "foto3.jpg",
+    "tanggal_kenangan": "2024-05-18",
+    "pesan_motivasi": "Terus kejar impianmu! Aku selalu di barisan depan untuk mendukung setiap langkahmu."
+  },
+  {
+    "id": 4,
+    "url_foto": "foto4.jpg",
+    "tanggal_kenangan": "2024-07-01",
+    "pesan_motivasi": "Dibuat dengan kode cinta. Kamu adalah project paling berharga dalam hidupku."
+  },
+  {
+    "id": 5,
+    "url_foto": "foto5.jpg",
+    "tanggal_kenangan": "2024-09-09",
+    "pesan_motivasi": "Tidak ada masalah yang tak bisa kamu pecahkan. Sama seperti debug, pasti ada solusinya!"
+  }
+]

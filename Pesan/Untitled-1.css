@@ -1,0 +1,214 @@
+/* ==================================== */
+/* 1. PENGATURAN DASAR & BACKGROUND IMAGE */
+/* ==================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Ganti 'Montserrat' jika kamu menggunakan font lain dari Google Fonts */
+    font-family: 'Montserrat', sans-serif; 
+}
+
+body {
+    /* Atur Background Image Body */
+    background-image: url('background.jpg'); /* GANTI dengan nama file gambar background kamu */
+    background-size: cover; 
+    background-attachment: scroll; /* Menggunakan scroll untuk body */
+    background-position: center center; 
+    color: #4a4a4a;
+    line-height: 1.6;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Overlay agar teks tetap terbaca */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 230, 236, 0.75); /* Pink muda transparan */
+    z-index: -1;
+}
+
+/* ======================================= */
+/* 2. HEADER, SECTION, & FOOTER (TEMA PINK) */
+/* ======================================= */
+header {
+    /* Background khusus Header untuk efek Parallax */
+    background-image: url('header-bg.jpg'); /* GANTI dengan gambar untuk header (opsional) */
+    background-size: cover;
+    background-attachment: fixed; /* INI KUNCI EFEK PARALLAX */
+    background-color: rgba(255, 105, 180, 0.9); /* Hot Pink semi-transparan sebagai fallback */
+    color: white;
+    padding: 30px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 10;
+}
+
+header h1 {
+    font-size: 3em;
+    margin: 0;
+    /* Ganti 'Dancing Script' jika kamu menggunakan font lain yang romantis */
+    font-family: 'Dancing Script', cursive; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); 
+}
+
+header p {
+    font-weight: 300;
+}
+
+section {
+    padding: 40px 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.95); /* Putih semi-transparan untuk konten */
+    border-radius: 20px; /* Lebih melengkung */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 5;
+    flex-shrink: 0;
+}
+
+footer {
+    padding: 20px 0;
+    margin-top: auto; 
+    background-color: rgba(255, 192, 203, 0.9); /* Pink muda transparan */
+    color: #555;
+    font-size: 0.95em;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 10;
+}
+
+/* ==================================== */
+/* 3. GALERI FOTO (KARTU MIRING & KECIL) */
+/* ==================================== */
+#galeri {
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* Jarak antar foto */
+    margin-top: 30px;
+    flex-wrap: wrap; 
+    padding: 0 10px;
+}
+
+.foto-item {
+    cursor: pointer;
+    /* UKURAN FOTO KECIL */
+    max-width: 130px; 
+    width: 18%; 
+    min-width: 100px; 
+    
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    
+    /* EFEK MIRING DARI JAVASCRIPT/HTML INI */
+    transform: rotate(calc((var(--i) - 3) * 5deg)); 
+    
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease-in-out;
+    background-color: white; 
+}
+
+.foto-item:hover {
+    /* Foto tegak lurus dan menonjol saat di-hover */
+    transform: scale(1.15) rotate(0deg) !important; 
+    box-shadow: 0 15px 30px rgba(255, 105, 180, 0.7); /* Shadow pink yang keren */
+    z-index: 20;
+}
+
+.foto-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    aspect-ratio: 1 / 1; 
+    object-fit: cover; 
+}
+
+/* ============================ */
+/* 4. KONTROL MUSIK (PINK TEMA) */
+/* ============================ */
+#tombol-musik {
+    background-color: #ff69b4; 
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 30px; 
+    cursor: pointer;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#tombol-musik:hover {
+    background-color: #ff1493; 
+    transform: translateY(-3px);
+}
+
+/* ========================== */
+/* 5. MODAL (POP-UP) MESSAGES */
+/* ========================== */
+.modal-tersembunyi {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9); /* Lebih gelap, lebih fokus */
+}
+
+.modal-konten {
+    background-color: #fff0f5; 
+    margin: 8% auto;
+    padding: 30px;
+    border: 1px solid #ffb6c1;
+    width: 90%;
+    max-width: 650px;
+    border-radius: 20px;
+    animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ... (Kode untuk modal foto dan pesan tetap sama) ... */
+#modal-pesan {
+    text-align: left;
+    padding: 15px;
+    background-color: #fce4ec; 
+    border-left: 5px solid #e91e63; 
+    border-radius: 8px;
+    font-size: 1.1em;
+    color: #333;
+}
+
+/* ============================== */
+/* 6. MEDIA QUERIES (RESPONSIVE) */
+/* ============================== */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+    
+    /* Foto tampil 2 per baris di HP */
+    .foto-item {
+        width: 45%; 
+        min-width: 120px;
+        /* Hapus efek miring di HP agar lebih rapi */
+        transform: rotate(0deg) !important; 
+    }
+
+    .modal-konten {
+        margin: 15% auto;
+        width: 90%;
+    }
+}
