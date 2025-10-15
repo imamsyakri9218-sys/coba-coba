@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Semangat Geby</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="Untitled-1.css"> 
 </head>
 <body>
 
@@ -16,7 +18,7 @@
         <p>Tekan tombol Play di bawah, untuk memutar lagu ya</p>
     </header>
 
-    <section id="musik-area">
+        <section id="musik-area">
         <audio id="musik-latar" loop>
             <source src="musik.ogg" type="audio/ogg"> 
             <source src="musik.mp3" type="audio/mpeg">
@@ -25,11 +27,20 @@
         <button id="tombol-musik">▶️ Incomplite by SISQO </button>
     </section>
 
-        <section id="galeri">
+        <section id="galeri">
         <p>Memuat kado spesial...</p>
     </section>
+    
+    <section id="komen-wishlist">
+        <h2>💌 Kirim Pesan & Wishlist!</h2>
+        <div class="form-container">
+            <iframe src="[LINK IFRAME GOOGLE FORM KAMU]" 
+                style="width: 100%; height: 600px; border: none;">
+            </iframe>
+        </div>
+    </section>
 
-    <div id="modal" class="modal-tersembunyi">
+        <div id="modal" class="modal-tersembunyi">
         <div class="modal-konten">
             <span class="tombol-tutup">&times;</span>
             <img id="modal-foto" src="" alt="Foto Diperbesar">
@@ -45,4 +56,3 @@
     <script src="script.js"></script> 
 </body>
 </html>
-
