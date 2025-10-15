@@ -19,7 +19,11 @@
     </header>
 
     <section id="musik-area">
-        <audio id="musik-latar" src="musik.ogg" loop></audio>
+        <audio id="musik-latar" loop>
+    <source src="musik.ogg" type="audio/ogg"> 
+    <source src="musik.mp3" type="audio/mpeg">
+    Browser Anda tidak mendukung pemutar audio ini.
+</audio>
         <button id="tombol-musik">▶️ Incomplite by SISQO </button>
     </section>
 
@@ -43,5 +47,6 @@
     <script src="script.js"></script> 
 </body>
 </html>
+
 
 
